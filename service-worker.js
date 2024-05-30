@@ -1,8 +1,8 @@
 const CACHE_NAME = 'offline-game-cache-v1';
 const urlsToCache = [
-    '/game/game.html',
-    '/game/game.css',
-    '/game/game.js',
+    'game/game.html',
+    'game/game.css',
+    'game/game.js',
     // Add more assets
 ];
 
@@ -19,14 +19,14 @@ self.addEventListener('fetch', event => {
     if (!navigator.onLine) {
         // Serve the custom game when offline
         event.respondWith(
-            caches.match('/game/game.html')
+            caches.match('game/game.html')
         );
     } else {
         // Try to fetch the resource from the network
         event.respondWith(
             fetch(event.request).catch(() => {
                 // If the network request fails, serve the custom game
-                return caches.match('/game/game.html');
+                return caches.match('game/game.html');
             })
         );
     }
